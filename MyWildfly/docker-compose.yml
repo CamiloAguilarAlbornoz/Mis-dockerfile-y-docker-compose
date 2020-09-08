@@ -5,6 +5,13 @@ services:
       context: ./image
       dockerfile: Dockerfile
     container_name: myWildfly
+    environment:
+      - WILDFLY_USER=Camilo
+      - WILDFLY_PASS=kagx25pass
+      - DB_NAME=prueba
+      - DB_USER=Camilo
+      - DB_PASS=kagx25pass
+      - DB_URI=db:3306
     depends_on:
       - db
     volumes:
@@ -21,8 +28,11 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: web_db
-      MYSQL_USER: devuser
+      MYSQL_DATABASE: prueba
+      MYSQL_USER: Camilo
       MYSQL_PASSWORD: kagx25pass
     ports:
-      - 3306:3306
+      - 6033:3306
+networks:
+    default:
+        driver: bridge
